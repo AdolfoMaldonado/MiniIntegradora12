@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('caracteristicas');
             $table->string('codigo');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
