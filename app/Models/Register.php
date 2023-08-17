@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Register extends Model
 {
     use HasFactory,SoftDeletes;
+    protected $table = 'registers';
     protected $primaryKey = 'id';
     protected $fillable = [
     'datos',
@@ -26,5 +27,5 @@ public function sensor()
     {
         return $this->belongsTo(Equipo::class, 'equipo_id', 'equipo_id');
     }
-    protected $table = 'registers';
+    
 }
