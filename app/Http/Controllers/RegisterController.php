@@ -8,35 +8,35 @@ use App\Models\Register;
 
 class RegisterController extends Controller
 {
-    private function fetchDataFromFeed($token, $feedName)
+    private function fetchDataFromFeed($token, $nombre)
     {
         $response = Http::withHeaders(['X-AIO-key' => $token])
-            ->get("https://io.adafruit.com/api/v2/AlbMaldonado2994/feeds/{$feedName}");
+            ->get("https://io.adafruit.com/api/v2/AlbMaldonado2994/feeds/{$nombre}");
         return $response->json();
     }
 
-    public function obtenerDatosFeed(Request $request, $feedName)
+    public function Datos(Request $request, $nombre)
     {
         $token = $request->header('X-AIO-key');
-        $feedData = $this->fetchDataFromFeed($token, $feedName . '/data');
+        $Data = $this->fetchDataFromFeed($token, $nombre . '/data');
     
         return response()->json([
             'status' => 'ok',
-            'datos' => $feedData
+            'datos' => $Data
         ], 200);
     }
     
 
-    public function obtenerUltimoDato(Request $request, $feedName)
+    public function Ultimo(Request $request, $nombre)
     {
         $token = $request->header('X-AIO-key');
-        $datos = $this->fetchDataFromFeed($token, $feedName);
+        $datos = $this->fetchDataFromFeed($token, $nombre);
     
         return response()->json($datos, 200);
     }
     
 
-    public function obtenerTodo(Request $request)
+    public function Todo(Request $request)
     {
         $token = $request->header('X-AIO-key');
 
@@ -45,11 +45,11 @@ class RegisterController extends Controller
         $dataSubset = [];
 
         foreach ($feeds as $feed) {
-            $feedData = $this->fetchDataFromFeed($token, $feed);
+            $Data = $this->fetchDataFromFeed($token, $feed);
             $dataSubset[$feed] = [
-                'name' => $feedData['name'],
-                'last_value' => $feedData['last_value'],
-                'created_at' => $feedData['created_at']
+                'name' => $Data['name'],
+                'last_value' => $Data['last_value'],
+                'created_at' => $Data['created_at']
             ];
         }
 

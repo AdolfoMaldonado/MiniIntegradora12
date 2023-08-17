@@ -11,7 +11,7 @@ Route::post('logout', [AuthController::class, 'logout'])->middleware('auth:sanct
 
 Route::group(['middleware' => 'auth:sanctum'], function () {
 
-    Route::get('/datos/{feedName}', [RegisterController::class, 'obtenerDatosFeed']);
-    Route::get('/ultimoDato/{feedName}', [RegisterController::class, 'obtenerUltimoDato']);
-    Route::get('/obtenerTodo', [RegisterController::class, 'obtenerTodo']);
+    Route::get('/datos/{nombre}', [RegisterController::class, 'Datos']);
+    Route::get('/ultimo/{nombre}', [RegisterController::class, 'Ultimo']);
+    Route::get('/todo', [RegisterController::class, 'Todo']);
 });
