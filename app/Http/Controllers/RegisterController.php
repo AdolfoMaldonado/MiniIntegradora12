@@ -40,7 +40,7 @@ class RegisterController extends Controller
     {
         $token = $request->header('X-AIO-key');
 
-        $feeds = ['humedad', 'lluvia', 'sonido','temperatura'];
+        $feeds = ['humedad', 'lluvia', 'sonido','temperatura','proximidad','luminosidad'];
 
         $dataSubset = [];
 
