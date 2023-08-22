@@ -11,13 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('equipos', function (Blueprint $table) {
+        Schema::create('sensor_data', function (Blueprint $table) {
             $table->id();
-            $table->string('alias');
-            $table->string('caracteristicas');
-            $table->string('codigo');
+            $table->integer('feed_id');
+            $table->string('name');
+            $table->string('description')->nullable();
+            // Agrega más columnas aquí según la estructura de los datos
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('equipos');
+        Schema::dropIfExists('sensores_data');
     }
 };
